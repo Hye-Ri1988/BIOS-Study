@@ -1,3 +1,6 @@
+---
+publish: true
+---
 
 ---
 ### ECAM 定义

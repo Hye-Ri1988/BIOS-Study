@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # CMOS 介绍与读写
 
 ## 2.1 什么是 CMOS

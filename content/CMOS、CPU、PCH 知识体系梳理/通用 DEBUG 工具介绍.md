@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # 通用 DEBUG 工具介绍
 
 ## 4.1 UEFI Shell 启动盘制作

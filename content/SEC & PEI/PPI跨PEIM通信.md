@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # PPI 跨 PEIM 通信
 
 从一个具体例子开始：两个 PEIM 在 PEI 阶段协作——一个提供 CMOS 读写功能，另一个用它读 RTC 时间校验。PPI 就是干这个用的。

@@ -1,3 +1,6 @@
+---
+publish: true
+---
 **Bus / Device / Function（BDF）三要素详解**
 
 在 PCI/PCIe 中，**Bus（总线）、Device（设备）、Function（功能）** 是唯一标识配置空间中某个目标的三层寻址体系，即 BDF。之所以需要三层结构，是因为 PCI 引入了 **PCI-to-PCI 桥** 来扩展层次化总线（单条总线因电气负载问题可挂接的设备数量有限）

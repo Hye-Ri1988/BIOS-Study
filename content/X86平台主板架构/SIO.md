@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # SIO — Super I/O 控制器
 
 ## 概述

@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # DDR — 双倍数据速率内存
 
 全称 Double Data Rate。在 DDR 之前是 SDR（Single Data Rate，单倍数据速率），两者工作方式有本质区别：

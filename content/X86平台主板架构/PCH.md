@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # PCH — Platform Controller Hub
 
 ## 概述

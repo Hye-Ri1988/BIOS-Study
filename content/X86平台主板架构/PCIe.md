@@ -1,3 +1,6 @@
+---
+publish: true
+---
 # PCIe — 高速串行总线
 
 Peripheral Component Interconnect Express，高速串行点对点互连总线，替代 PCI/PCI-X。
