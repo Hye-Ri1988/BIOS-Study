@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
 configuration:
-  pageTitle: BIOS 学习笔记
+  pageTitle: TianJunYou 的 BIOS 学习记录
   pageTitleSuffix: ""
   enableSPA: true
   enablePopovers: true

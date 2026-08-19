@@ -1,8 +1,8 @@
 ---
-title: BIOS/UEFI 知识体系总览
+title: TianJunYou的BIOS学习记录
 ---
 
-# 🌱 BIOS 学习笔记
+# 🌱 TianJunYou 的 BIOS 学习记录
 
 > 一位 BIOS/UEFI 固件开发新人的公开学习笔记库。从 2026 年 7 月 16 日开始,系统记录固件开发的每天学习、实践与思考。
 
