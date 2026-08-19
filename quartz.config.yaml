@@ -70,6 +70,9 @@ plugins:
   - source: github:quartz-community/table-of-contents
     enabled: true
     order: 50
+    layout:
+      position: right
+      priority: 10
   - source: github:quartz-community/crawl-links
     enabled: true
     options:
@@ -123,10 +126,7 @@ plugins:
   - source: github:quartz-community/explorer
     enabled: false
   - source: github:quartz-community/graph
-    enabled: true
-    layout:
-      position: right
-      priority: 10
+    enabled: false
   - source: github:quartz-community/search
     enabled: true
     layout:
@@ -136,10 +136,7 @@ plugins:
       groupOptions:
         grow: true
   - source: github:quartz-community/backlinks
-    enabled: true
-    layout:
-      position: right
-      priority: 30
+    enabled: false
   - source: github:quartz-community/article-title
     enabled: true
     layout:
