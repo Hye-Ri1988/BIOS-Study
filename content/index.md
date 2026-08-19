@@ -19,37 +19,9 @@ title: BIOS/UEFI 知识体系总览
 > 本站记录 BIOS/UEFI 固件开发的完整学习路径:从一块主板怎么工作,到固件怎么把它启动起来,再到固件怎么开发、怎么与操作系统对接、怎么调试排错。
 >
 > **浏览方式**:
-> - **按主题** → 看下方「主题速查」分块索引
+> - **按主题** → 看下方「全部主题」目录列表
 > - **按日期** → 看下方「最近 7 天」或展开「全部日期索引」
 > - **完整概览** → [[BIOS知识体系总览|知识体系完整版(从硬件到 OS 的主线)]]
-
-## 🗺️ 主线:从硬件到固件到 OS
-
-```mermaid
-graph LR
-    A[硬件平台<br/>CPU/PCH/内存] --> B[启动流程<br/>SEC→PEI→DXE→BDS]
-    B --> C[构建体系<br/>EDK2 / AMI]
-    C --> D[服务层<br/>BS / RS / PPI/Protocol]
-    D --> E[接口<br/>ACPI / SMBIOS]
-    E --> F[底层模式<br/>SMI/SMM / SIO]
-    F --> G[调试工具<br/>RU/RW/Shell/AFU]
-```
-
-## 📚 主题速查
-
-> [!note] 启动流程(6 阶段)
-> - [[SEC & PEI]]、[[PEI HOB]]、[[DXE]]、[[EFI Framework Overview]]、[[BDS]]、[[Boot Services]]、[[RunTime Services]]
-
-> [!note] 硬件与平台
-> - [[X86平台主板架构]]、[[CMOS、CPU、PCH 知识体系梳理]]、[[ACPI]]、[[SMBIOS]]
-> - [[PCIe]]、[[USB]]、[[SMBus & SPD]]、[[Super IO]]、[[GOP & HDMI]]、[[SMI]]
-
-> [!note] 构建体系
-> - [[EDK2 DSC & FDF]]、[[INF & DEC文件详解]]、[[Library Mapping]]
-> - [[Aptio V eModule_oem & Elink]]、[[Hook_List]]
-
-> [!note] 工具与调试
-> - [[BIOS 编译环境搭建]]、[[UEFI shell调试命令和APP]]、[[Git 使用]]
 
 ## 🆕 最近 7 天
 
