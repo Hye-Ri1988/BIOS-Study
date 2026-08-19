@@ -40,12 +40,10 @@ jobs:
             ${{ runner.os }}-plugins-
       - name: Install Dependencies
         run: npm ci
-      - name: Fix binary permissions
-        run: chmod +x node_modules/.bin/* 2>/dev/null; find node_modules -name '*.js' -path '*/bin/*' -exec chmod +x {} + 2>/dev/null; find node_modules -name '*.mjs' -path '*/bin/*' -exec chmod +x {} + 2>/dev/null; true
       - name: Install Quartz plugins
-        run: npx quartz plugin install
+        run: node ./node_modules/@jackyzha0/quartz/quartz/bootstrap-cli.mjs plugin install
       - name: Build Quartz
-        run: npx quartz build
+        run: node ./node_modules/@jackyzha0/quartz/quartz/bootstrap-cli.mjs build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
