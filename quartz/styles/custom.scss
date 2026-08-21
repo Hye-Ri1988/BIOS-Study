@@ -1,3 +1,14 @@
 @use "./base.scss";
 
 // put your custom CSS here!
+
+// ===== Explorer 侧边栏:当前文件高亮强化 =====
+// 默认高亮仅改文字颜色(tertiary),在浅色主题下很不明显。
+// 强化:浅灰底色 + 圆角 + 加粗 + 主题色文字,让"当前所在笔记"一眼可见。
+.explorer-content ul li > a.active,
+.explorer-content ul li > a.is-active {
+  background: var(--lightgray);
+  border-radius: 4px;
+  font-weight: 500;
+  color: var(--secondary);
+}
