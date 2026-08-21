@@ -266,10 +266,14 @@ export function renderPage(
 
   const lang = componentData.fileData.frontmatter?.lang ?? cfg.locale?.split("-")[0] ?? "en"
   const direction = i18n(cfg.locale).direction ?? "ltr"
+  // 站点子路径前缀(如 "/BIOS-Study"),供社区插件的 resolveBasePath() 读取。
+  // 新版 @quartz-community/utils 从 <body data-basepath> 取前缀,核心旧版未注入,这里补上。
+  const basePathParts = cfg.baseUrl.split("/").slice(1)
+  const basePath = basePathParts.length > 0 ? "/" + basePathParts.join("/") : ""
   const doc = (
     <html lang={lang} dir={direction}>
       <Head {...componentData} />
-      <body data-slug={slug}>
+      <body data-slug={slug} data-basepath={basePath}>
         {frame.css && <style dangerouslySetInnerHTML={{ __html: frame.css }} />}
         <div id="quartz-root" class="page" data-frame={frame.name}>
           <Body {...componentData}>
