@@ -214,7 +214,7 @@
     "search": {
       "source": "github:quartz-community/search",
       "resolved": "https://github.com/quartz-community/search.git",
-      "commit": "e9c10e521b95a14a512739b62a4159ab5afd5edf",
+      "commit": "1d9ba593230b997ee4cf0cc3c1ed4a30b571cee2",
       "installedAt": "2026-03-12T19:33:41.367Z"
     },
     "spacer": {
