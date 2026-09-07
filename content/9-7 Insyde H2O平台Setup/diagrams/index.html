@@ -95,7 +95,7 @@
   <div class="grid">
 
     <section class="card" id="fig1">
-      <div class="thumb"><img src="fig1-five-file-pipeline.svg" alt="五文件编译流水线框图" /></div>
+      <div class="thumb"><img src="../fig1-five-file-pipeline.svg" alt="五文件编译流水线框图" /></div>
       <div class="meta">
         <h2>1. 五文件编译流水线框图</h2>
         <p>Config.h / uni / vfr / inf / c → 编译产物（Strings[]、FormBin[]、.efi）→ 运行时注册（InstallMultipleProtocolInterfaces + HiiAddPackages）→ HII 数据库。</p>
@@ -104,7 +104,7 @@
     </section>
 
     <section class="card" id="fig2">
-      <div class="thumb"><img src="fig2-hii-runtime-architecture.svg" alt="HII 运行架构图" /></div>
+      <div class="thumb"><img src="../fig2-hii-runtime-architecture.svg" alt="HII 运行架构图" /></div>
       <div class="meta">
         <h2>2. HII 运行架构图（组件交互）</h2>
         <p>Form Browser ⇄ ConfigAccess ⇄ ConfigRouting ⇄ NVRAM 变量 / 内存镜像。逻辑（ConfigAccess）+ 外观（HiiAddPackages）缺一不可。</p>
@@ -113,7 +113,7 @@
     </section>
 
     <section class="card" id="fig3">
-      <div class="thumb"><img src="fig3-dataflow-overview.svg" alt="数据流全景图" /></div>
+      <div class="thumb"><img src="../fig3-dataflow-overview.svg" alt="数据流全景图" /></div>
       <div class="meta">
         <h2>3. 数据流全景图（字节 ⇄ 字符串边界）</h2>
         <p>内部只存字节（struct），只在浏览器索要时才生成字符串；BlockToConfig / ConfigToBlock 就是边界转换。</p>
@@ -122,7 +122,7 @@
     </section>
 
     <section class="card" id="fig4">
-      <div class="thumb"><img src="fig4-ifr-formset-question-tree.svg" alt="IFR 结构树" /></div>
+      <div class="thumb"><img src="../fig4-ifr-formset-question-tree.svg" alt="IFR 结构树" /></div>
       <div class="meta">
         <h2>4. IFR 结构树（formset → form → question + varstore）</h2>
         <p>浏览器解析 IFR opcode 成树；varstore / NVRAM 变量 / struct 三者字节布局严格对应（2 字节）。</p>
@@ -131,7 +131,7 @@
     </section>
 
     <section class="card" id="fig5">
-      <div class="thumb"><img src="fig5-classguid-menu-mapping.svg" alt="classguid 菜单归类机制" /></div>
+      <div class="thumb"><img src="../fig5-classguid-menu-mapping.svg" alt="classguid 菜单归类机制" /></div>
       <div class="meta">
         <h2>5. classguid / class / subclass → Main/Advanced 归类机制</h2>
         <p>它们不是 Main/Advanced 本身，而是分类标签；落到哪个 Tab 取决于平台源码映射表。类比：会议室 + 会议类型回执。</p>
@@ -140,7 +140,7 @@
     </section>
 
     <section class="card" id="fig6">
-      <div class="thumb"><img src="fig6-variable-identity-varstore.svg" alt="UEFI 变量身份与 varstore 绑定" /></div>
+      <div class="thumb"><img src="../fig6-variable-identity-varstore.svg" alt="UEFI 变量身份与 varstore 绑定" /></div>
       <div class="meta">
         <h2>6. UEFI 变量身份 · varstore 绑定 · attribute 属性</h2>
         <p>变量完整身份 = 名字（UTF-16）+ GUID + attribute=0x7（非易失|开机读写|运行期读写）。</p>
@@ -149,7 +149,7 @@
     </section>
 
     <section class="card" id="fig7">
-      <div class="thumb"><img src="fig7-read-write-sequence.svg" alt="读写时序图" /></div>
+      <div class="thumb"><img src="../fig7-read-write-sequence.svg" alt="读写时序图" /></div>
       <div class="meta">
         <h2>7. 读写时序图（ExtractConfig 读 / RouteConfig 写）</h2>
         <p>读：LoadConfig→BlockToConfig；写：ConfigToBlock→SetVariable。Callback 当前返回 EFI_UNSUPPORTED。</p>
