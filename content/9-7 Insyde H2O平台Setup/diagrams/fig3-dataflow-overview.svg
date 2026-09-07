@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 820" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <marker id="r1" markerWidth="11" markerHeight="11" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#2f6f8f"/>
+    </marker>
+    <marker id="r2" markerWidth="11" markerHeight="11" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#b5652f"/>
+    </marker>
+  </defs>
+  <rect width="1240" height="820" fill="#f7f8fa"/>
+  <text x="620" y="40" text-anchor="middle" font-size="26" font-weight="700" fill="#1b2b3a">数据流全景图（字节 ⇄ 字符串 边界）</text>
+  <text x="620" y="68" text-anchor="middle" font-size="14" fill="#5b6b7b">内部只存字节，只在浏览器索要时才生成字符串 —— 这正是“数据库存行、API 返回 JSON”的类比</text>
+
+  <!-- Top: frontend string layer -->
+  <rect x="180" y="120" width="880" height="120" rx="16" fill="#eaf3ec" stroke="#3b8269" stroke-width="2.4"/>
+  <text x="620" y="150" text-anchor="middle" font-size="18" font-weight="700" fill="#1f4e3a">前端 · 浏览器看到的字符串（接口传输格式，非存储格式）</text>
+  <rect x="200" y="168" width="840" height="56" rx="8" fill="#ffffff" stroke="#3b8269" stroke-width="1.5"/>
+  <text x="620" y="204" text-anchor="middle" font-size="14" font-family="'Consolas','Segoe UI',monospace" fill="#1f4e3a">GUID=5C8E7A19-...-F27B55&amp;NAME=JYTianSetupVar&amp;PATH=&lt;设备路径&gt;&amp;OFFSET=0&amp;WIDTH=2&amp;VALUE=0100</text>
+
+  <!-- Middle: ConfigRouting -->
+  <rect x="280" y="300" width="680" height="120" rx="16" fill="#eef2f7" stroke="#2f6f8f" stroke-width="2.4"/>
+  <text x="620" y="332" text-anchor="middle" font-size="18" font-weight="700" fill="#1f4e6b">ConfigRouting 协议（边界翻译器）</text>
+  <rect x="300" y="352" width="300" height="44" rx="8" fill="#ffffff" stroke="#2f6f8f"/>
+  <text x="450" y="380" text-anchor="middle" font-size="14" font-weight="600" fill="#1f4e6b">BlockToConfig（字节→字符串）</text>
+  <rect x="640" y="352" width="300" height="44" rx="8" fill="#ffffff" stroke="#2f6f8f"/>
+  <text x="790" y="380" text-anchor="middle" font-size="14" font-weight="600" fill="#1f4e6b">ConfigToBlock（字符串→字节）</text>
+
+  <!-- Bottom left: memory struct -->
+  <rect x="110" y="500" width="440" height="150" rx="16" fill="#eaf1f7" stroke="#4a8fbd" stroke-width="2.4"/>
+  <text x="330" y="532" text-anchor="middle" font-size="17" font-weight="700" fill="#1f4e6b">后端 · 内存镜像 mJYTianSetupConfig</text>
+  <text x="330" y="556" text-anchor="middle" font-size="13" fill="#33475b">struct（2 字节，源头真相）</text>
+  <rect x="140" y="572" width="180" height="40" rx="6" fill="#ffffff" stroke="#4a8fbd"/>
+  <text x="230" y="597" text-anchor="middle" font-size="13" fill="#1f4e6b">EnableFlag · 偏移0</text>
+  <rect x="340" y="572" width="180" height="40" rx="6" fill="#ffffff" stroke="#4a8fbd"/>
+  <text x="430" y="597" text-anchor="middle" font-size="13" fill="#1f4e6b">DemoMode · 偏移1</text>
+
+  <!-- Bottom right: NVRAM -->
+  <rect x="700" y="500" width="440" height="150" rx="16" fill="#f4f1ea" stroke="#7a4a12" stroke-width="2.4"/>
+  <text x="920" y="532" text-anchor="middle" font-size="17" font-weight="700" fill="#7a4a12">NVRAM 变量 JYTianSetupVar（持久）</text>
+  <text x="920" y="556" text-anchor="middle" font-size="13" fill="#33475b">2 字节 · 断电不丢 · attribute=0x7</text>
+  <text x="920" y="586" text-anchor="middle" font-size="13" fill="#33475b">GetVariable / SetVariable</text>
+  <text x="920" y="610" text-anchor="middle" font-size="13" fill="#33475b">按 名字 + VARSTORE_GUID 定位</text>
+
+  <!-- Arrows: read path (down-left) -->
+  <g stroke="#2f6f8f" stroke-width="2.4" fill="none">
+    <path d="M450 244 L450 300" marker-end="url(#r1)"/>
+    <path d="M450 420 L450 500" marker-end="url(#r1)"/>
+  </g>
+  <text x="466" y="282" font-size="12" fill="#2f6f8f">读：字节→字符串</text>
+  <text x="466" y="474" font-size="12" fill="#2f6f8f">ExtractConfig 读方向</text>
+
+  <!-- Arrows: write path (down-right) -->
+  <g stroke="#b5652f" stroke-width="2.4" fill="none">
+    <path d="M790 244 L790 300" marker-end="url(#r2)"/>
+    <path d="M790 420 L790 500" marker-end="url(#r2)"/>
+  </g>
+  <text x="806" y="282" font-size="12" fill="#b5652f">写：字符串→字节</text>
+  <text x="806" y="474" font-size="12" fill="#b5652f">RouteConfig 写方向</text>
+
+  <!-- memory <-> NVRAM -->
+  <g stroke="#7a4a12" stroke-width="2.4" fill="none">
+    <line x1="550" y1="590" x2="700" y2="590" marker-end="url(#r2)"/>
+    <line x1="700" y1="618" x2="550" y2="618" marker-end="url(#r1)"/>
+  </g>
+  <text x="625" y="680" text-anchor="middle" font-size="12" fill="#7a4a12">LoadConfigFromVariable → GetVariable（读入内存）</text>
+  <text x="625" y="700" text-anchor="middle" font-size="12" fill="#7a4a12">改完 → SetVariable（写回）</text>
+
+  <text x="620" y="760" text-anchor="middle" font-size="13" fill="#5b6b7b">为什么不用字符串存储？字符串是“接口格式”，冗余且无类型；字节是“存储格式”，2 字节、可直接结构体操作、可派生字符串。</text>
+  <text x="620" y="788" text-anchor="middle" font-size="12" fill="#8a94a0">类比：数据库存结构化行，只在 API 响应时序列化成 JSON。</text>
+</svg>

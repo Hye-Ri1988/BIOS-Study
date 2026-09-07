@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 980" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <marker id="a1" markerWidth="11" markerHeight="11" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#2f6f8f"/>
+    </marker>
+    <marker id="a2" markerWidth="11" markerHeight="11" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#b5652f"/>
+    </marker>
+    <marker id="a3" markerWidth="11" markerHeight="11" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#3b8269"/>
+    </marker>
+    <marker id="a4" markerWidth="11" markerHeight="11" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#7a4a12"/>
+    </marker>
+  </defs>
+  <rect width="1240" height="980" fill="#f7f8fa"/>
+  <text x="620" y="40" text-anchor="middle" font-size="26" font-weight="700" fill="#1b2b3a">HII 运行架构图（组件交互）</text>
+  <text x="620" y="68" text-anchor="middle" font-size="14" fill="#5b6b7b">Form Browser ⇄ ConfigAccess ⇄ ConfigRouting ⇄ NVRAM 变量 / 内存镜像</text>
+
+  <!-- 1. Form Browser -->
+  <rect x="400" y="96" width="420" height="104" rx="14" fill="#eaf3ec" stroke="#3b8269" stroke-width="2.5"/>
+  <text x="610" y="128" text-anchor="middle" font-size="19" font-weight="700" fill="#1f4e3a">Form Browser（UEFI · DXE 驱动）</text>
+  <text x="610" y="152" text-anchor="middle" font-size="13" fill="#33475b">EFI_FORM_BROWSER2_PROTOCOL · SendForm</text>
+  <text x="610" y="174" text-anchor="middle" font-size="13" fill="#33475b">渲染 + 处理按键 + 和 ConfigAccess 交互</text>
+  <text x="610" y="196" text-anchor="middle" font-size="12" fill="#5b6b7b">Insyde/AMI 可能用自己的实现替换，职责相同</text>
+
+  <!-- 2. HII Database -->
+  <rect x="80" y="96" width="260" height="180" rx="14" fill="#eef2f7" stroke="#2f6f8f" stroke-width="2"/>
+  <text x="210" y="126" text-anchor="middle" font-size="19" font-weight="700" fill="#1f4e6b">HII 数据库</text>
+  <text x="210" y="150" text-anchor="middle" font-size="13" fill="#33475b">收藏所有 HII 包</text>
+  <rect x="104" y="164" width="212" height="38" rx="6" fill="#ffffff" stroke="#4a8fbd" stroke-width="1.5"/>
+  <text x="210" y="188" text-anchor="middle" font-size="12" fill="#1f4e6b">JYTianSetupStrings[]（文字）</text>
+  <rect x="104" y="212" width="212" height="38" rx="6" fill="#ffffff" stroke="#4a8fbd" stroke-width="1.5"/>
+  <text x="210" y="236" text-anchor="middle" font-size="12" fill="#1f4e6b">JYTianSetupFormBin[]（IFR 结构）</text>
+
+  <!-- 3. Driver box -->
+  <rect x="760" y="300" width="420" height="210" rx="14" fill="#fdf4e7" stroke="#b5652f" stroke-width="2"/>
+  <text x="970" y="332" text-anchor="middle" font-size="19" font-weight="700" fill="#7a4a12">JYTianSetup.efi（DXE 驱动）</text>
+  <text x="970" y="356" text-anchor="middle" font-size="13" fill="#33475b">install 到 mDriverHandle</text>
+
+  <rect x="782" y="372" width="150" height="64" rx="8" fill="#ffffff" stroke="#b5652f" stroke-width="1.5"/>
+  <text x="857" y="400" text-anchor="middle" font-size="12" font-weight="600" fill="#7a4a12">DevicePath</text>
+  <text x="857" y="420" text-anchor="middle" font-size="11" fill="#5b6b7b">身份（设备路径）</text>
+
+  <rect x="944" y="372" width="214" height="120" rx="8" fill="#ffffff" stroke="#b5652f" stroke-width="1.5"/>
+  <text x="1051" y="400" text-anchor="middle" font-size="13" font-weight="600" fill="#7a4a12">EFI_HII_CONFIG_ACCESS</text>
+  <text x="1051" y="420" text-anchor="middle" font-size="11" fill="#5b6b7b">ExtractConfig（读）</text>
+  <text x="1051" y="440" text-anchor="middle" font-size="11" fill="#5b6b7b">RouteConfig（写）</text>
+  <text x="1051" y="460" text-anchor="middle" font-size="11" fill="#5b6b7b">Callback（交互）</text>
+  <text x="1051" y="480" text-anchor="middle" font-size="11" fill="#8a94a0">当前 Callback 返回 EFI_UNSUPPORTED</text>
+
+  <!-- 4. ConfigRouting -->
+  <rect x="400" y="560" width="420" height="120" rx="14" fill="#eef2f7" stroke="#4a8fbd" stroke-width="2"/>
+  <text x="610" y="592" text-anchor="middle" font-size="19" font-weight="700" fill="#1f4e6b">ConfigRouting 协议（翻译器）</text>
+  <text x="610" y="616" text-anchor="middle" font-size="13" fill="#33475b">EFI_HII_CONFIG_ROUTING_PROTOCOL</text>
+  <rect x="430" y="630" width="170" height="34" rx="6" fill="#ffffff" stroke="#4a8fbd"/>
+  <text x="515" y="652" text-anchor="middle" font-size="12" fill="#1f4e6b">BlockToConfig（字节→字符串）</text>
+  <rect x="620" y="630" width="170" height="34" rx="6" fill="#ffffff" stroke="#4a8fbd"/>
+  <text x="705" y="652" text-anchor="middle" font-size="12" fill="#1f4e6b">ConfigToBlock（字符串→字节）</text>
+
+  <!-- 5. NVRAM + memory -->
+  <rect x="400" y="740" width="300" height="130" rx="14" fill="#f4f1ea" stroke="#7a4a12" stroke-width="2"/>
+  <text x="550" y="772" text-anchor="middle" font-size="17" font-weight="700" fill="#7a4a12">NVRAM 变量（持久）</text>
+  <text x="550" y="796" text-anchor="middle" font-size="13" fill="#33475b">JYTianSetupVar（名字）+ VARSTORE_GUID</text>
+  <text x="550" y="820" text-anchor="middle" font-size="13" fill="#33475b">attribute = 0x7</text>
+  <text x="550" y="840" text-anchor="middle" font-size="13" fill="#33475b">2 字节 · 断电不丢</text>
+
+  <rect x="740" y="740" width="350" height="130" rx="14" fill="#eaf1f7" stroke="#2f6f8f" stroke-width="2"/>
+  <text x="915" y="772" text-anchor="middle" font-size="17" font-weight="700" fill="#1f4e6b">内存镜像 mJYTianSetupConfig</text>
+  <text x="915" y="796" text-anchor="middle" font-size="13" fill="#33475b">STATIC struct（2 字节）</text>
+  <text x="915" y="820" text-anchor="middle" font-size="13" fill="#33475b">EnableFlag（偏移 0）</text>
+  <text x="915" y="840" text-anchor="middle" font-size="13" fill="#33475b">DemoMode（偏移 1）</text>
+
+  <!-- Arrows -->
+  <!-- Browser <-> HII DB -->
+  <g stroke="#2f6f8f" stroke-width="2" fill="none">
+    <line x1="340" y1="160" x2="400" y2="160" marker-end="url(#a1)"/>
+    <line x1="440" y1="204" x2="360" y2="200" marker-end="url(#a1)"/>
+  </g>
+  <text x="382" y="150" font-size="11" fill="#2f6f8f">读 IFR</text>
+  <text x="370" y="222" font-size="11" fill="#2f6f8f">取字符串</text>
+
+  <!-- Browser -> ConfigAccess (read) -->
+  <g stroke="#b5652f" stroke-width="2.4" fill="none">
+    <line x1="790" y1="200" x2="900" y2="420" marker-end="url(#a2)"/>
+  </g>
+  <text x="822" y="300" font-size="12" fill="#b5652f">ExtractConfig（读）</text>
+  <text x="812" y="320" font-size="11" fill="#8a94a0">按 varstore GUID 找 handle</text>
+
+  <!-- ConfigAccess -> ConfigRouting -->
+  <g stroke="#4a8fbd" stroke-width="2.4" fill="none">
+    <line x1="900" y1="512" x2="720" y2="560" marker-end="url(#a3)"/>
+  </g>
+  <text x="810" y="560" font-size="12" fill="#4a8fbd">BlockToConfig / ConfigToBlock</text>
+
+  <!-- ConfigRouting <-> memory -->
+  <g stroke="#4a8fbd" stroke-width="2.4" fill="none">
+    <line x1="640" y1="680" x2="700" y2="740" marker-end="url(#a3)"/>
+  </g>
+  <text x="648" y="716" font-size="11" fill="#4a8fbd">字节</text>
+
+  <!-- Driver -> NVRAM -->
+  <g stroke="#7a4a12" stroke-width="2.4" fill="none">
+    <line x1="940" y1="512" x2="640" y2="740" marker-end="url(#a4)"/>
+  </g>
+  <text x="808" y="648" font-size="12" fill="#7a4a12">GetVariable / SetVariable</text>
+
+  <!-- Driver <-> memory -->
+  <g stroke="#7a4a12" stroke-width="2.4" fill="none">
+    <line x1="1000" y1="512" x2="915" y2="740" marker-end="url(#a4)"/>
+  </g>
+  <text x="1010" y="648" font-size="11" fill="#7a4a12">LoadConfigFromVariable</text>
+
+  <text x="620" y="730" text-anchor="middle" font-size="12" fill="#5b6b7b">内存镜像 = NVRAM 变量的缓存；先刷内存再转换/写回</text>
+  <text x="620" y="940" text-anchor="middle" font-size="12" fill="#8a94a0">关键：逻辑（ConfigAccess）+ 外观（HiiAddPackages）必须都装上，缺一不可。</text>
+</svg>

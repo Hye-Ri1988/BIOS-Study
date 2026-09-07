@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 780" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <marker id="s1" markerWidth="11" markerHeight="11" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#2f6f8f"/>
+    </marker>
+    <marker id="s2" markerWidth="11" markerHeight="11" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#3b8269"/>
+    </marker>
+    <marker id="s3" markerWidth="11" markerHeight="11" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#7a4a12"/>
+    </marker>
+  </defs>
+  <rect width="1240" height="780" fill="#f7f8fa"/>
+  <text x="620" y="36" text-anchor="middle" font-size="24" font-weight="700" fill="#1b2b3a">读写时序图（ExtractConfig 读 / RouteConfig 写）</text>
+
+  <!-- participants -->
+  <g>
+    <rect x="90" y="60" width="180" height="58" rx="10" fill="#eaf3ec" stroke="#3b8269" stroke-width="2"/>
+    <text x="180" y="92" text-anchor="middle" font-size="14" font-weight="700" fill="#1f4e3a">Form Browser</text>
+    <rect x="360" y="60" width="180" height="58" rx="10" fill="#fdf4e7" stroke="#b5652f" stroke-width="2"/>
+    <text x="450" y="92" text-anchor="middle" font-size="14" font-weight="700" fill="#7a4a12">Driver (ConfigAccess)</text>
+    <rect x="630" y="60" width="180" height="58" rx="10" fill="#eef2f7" stroke="#4a8fbd" stroke-width="2"/>
+    <text x="720" y="92" text-anchor="middle" font-size="14" font-weight="700" fill="#1f4e6b">ConfigRouting</text>
+    <rect x="900" y="60" width="220" height="58" rx="10" fill="#f4f1ea" stroke="#7a4a12" stroke-width="2"/>
+    <text x="1010" y="92" text-anchor="middle" font-size="14" font-weight="700" fill="#7a4a12">NVRAM / 内存镜像</text>
+  </g>
+
+  <!-- lifelines -->
+  <g stroke="#c3cdd6" stroke-width="1.5" stroke-dasharray="5 5">
+    <line x1="180" y1="118" x2="180" y2="700"/>
+    <line x1="450" y1="118" x2="450" y2="700"/>
+    <line x1="720" y1="118" x2="720" y2="700"/>
+    <line x1="1010" y1="118" x2="1010" y2="700"/>
+  </g>
+
+  <!-- ===== READ ===== -->
+  <rect x="90" y="128" width="1030" height="28" rx="6" fill="#eaf3ec"/>
+  <text x="605" y="148" text-anchor="middle" font-size="14" font-weight="700" fill="#1f4e3a">读方向 · ExtractConfig（字节 → 字符串）</text>
+
+  <g stroke="#3b8269" stroke-width="2" fill="none">
+    <path d="M180 170 h270" marker-end="url(#s2)"/>
+  </g>
+  <text x="330" y="162" text-anchor="middle" font-size="12" fill="#1f4e3a">① ExtractConfig(ConfigRequest)</text>
+
+  <g stroke="#3b8269" stroke-width="2" fill="none">
+    <path d="M450 196 h270" marker-end="url(#s2)"/>
+  </g>
+  <text x="600" y="188" text-anchor="middle" font-size="12" fill="#1f4e6b">② LocateProtocol(ConfigRouting) + 校验头部</text>
+
+  <g stroke="#3b8269" stroke-width="2" fill="none">
+    <path d="M450 230 h0" />
+    <path d="M450 238 v20"/>
+    <path d="M450 250 h560" marker-end="url(#s2)"/>
+  </g>
+  <text x="720" y="244" text-anchor="middle" font-size="12" fill="#33475b">③ LoadConfigFromVariable（GetVariable 刷新内存，保证是新值）</text>
+
+  <g stroke="#3b8269" stroke-width="2" fill="none">
+    <path d="M720 296 h-270" marker-end="url(#s2)"/>
+  </g>
+  <text x="600" y="288" text-anchor="middle" font-size="12" fill="#33475b">④ 若 Request 为 NULL / 无 OFFSET → 构造全量请求（HiiConstructConfigHdr + &amp;OFFSET=0&amp;WIDTH=2）</text>
+
+  <g stroke="#3b8269" stroke-width="2" fill="none">
+    <path d="M450 322 h270" marker-end="url(#s2)"/>
+  </g>
+  <text x="600" y="314" text-anchor="middle" font-size="12" fill="#33475b">⑤ BlockToConfig(ConfigRequest, &amp;mConfig, size, Results, Progress)</text>
+
+  <g stroke="#3b8269" stroke-width="1.8" stroke-dasharray="6 4" fill="none">
+    <path d="M450 348 h-270" marker-end="url(#s2)"/>
+  </g>
+  <text x="320" y="340" text-anchor="middle" font-size="12" fill="#33475b">⑥ 返回配置字符串（VALUE=0100）</text>
+
+  <text x="180" y="382" text-anchor="middle" font-size="12" fill="#5b6b7b">⑦ 浏览器解析并渲染当前值</text>
+
+  <!-- ===== WRITE ===== -->
+  <rect x="90" y="410" width="1030" height="28" rx="6" fill="#fdf4e7"/>
+  <text x="605" y="430" text-anchor="middle" font-size="14" font-weight="700" fill="#7a4a12">写方向 · RouteConfig（字符串 → 字节 → 存变量）</text>
+
+  <g stroke="#b5652f" stroke-width="2" fill="none">
+    <path d="M180 452 h270" marker-end="url(#s3)"/>
+  </g>
+  <text x="330" y="444" text-anchor="middle" font-size="12" fill="#7a4a12">① 用户改动 → RouteConfig(Configuration)</text>
+
+  <g stroke="#b5652f" stroke-width="2" fill="none">
+    <path d="M450 478 h270" marker-end="url(#s3)"/>
+  </g>
+  <text x="600" y="470" text-anchor="middle" font-size="12" fill="#33475b">② LocateProtocol(ConfigRouting) + 校验头部</text>
+
+  <g stroke="#b5652f" stroke-width="2" fill="none">
+    <path d="M450 504 h270" marker-end="url(#s3)"/>
+  </g>
+  <text x="600" y="496" text-anchor="middle" font-size="12" fill="#33475b">③ ConfigToBlock(Configuration, &amp;mConfig, &amp;BufferSize, Progress) 解析 VALUE=...</text>
+
+  <g stroke="#b5652f" stroke-width="2" fill="none">
+    <path d="M450 530 h560" marker-end="url(#s3)"/>
+  </g>
+  <text x="720" y="522" text-anchor="middle" font-size="12" fill="#7a4a12">④ SetVariable(JYTianSetupVar, VARSTORE_GUID, attrs, size, &amp;mConfig) 真正持久化</text>
+
+  <g stroke="#b5652f" stroke-width="1.8" stroke-dasharray="6 4" fill="none">
+    <path d="M450 582 h-270" marker-end="url(#s3)"/>
+  </g>
+  <text x="320" y="574" text-anchor="middle" font-size="12" fill="#33475b">⑤ 浏览器显示已保存 / 重新渲染</text>
+
+  <text x="180" y="612" text-anchor="middle" font-size="12" fill="#5b6b7b">注：ConfigToBlock 的 BufferSize 是入/出参数（入=容量 2，出=实际解析字节数）</text>
+  <text x="180" y="640" text-anchor="middle" font-size="12" fill="#5b6b7b">*Progress 用来告诉浏览器“处理到哪”；出错时浏览器可定位。</text>
+
+  <text x="620" y="712" text-anchor="middle" font-size="13" fill="#8a94a0">Callback 当前返回 EFI_UNSUPPORTED → 无交互 question，浏览器走默认 Extract/Route 流程。</text>
+  <text x="620" y="740" text-anchor="middle" font-size="12" fill="#8a94a0">读：先 LoadConfig 刷内存再 BlockToConfig；写：先 ConfigToBlock 填内存再 SetVariable 落盘。</text>
+</svg>

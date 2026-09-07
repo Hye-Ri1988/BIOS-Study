@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 980" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <marker id="t1" markerWidth="11" markerHeight="11" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#2f6f8f"/>
+    </marker>
+  </defs>
+  <rect width="1240" height="980" fill="#f7f8fa"/>
+  <text x="620" y="40" text-anchor="middle" font-size="26" font-weight="700" fill="#1b2b3a">IFR 结构树：formset → form → question + varstore 绑定</text>
+  <text x="620" y="68" text-anchor="middle" font-size="14" fill="#5b6b7b">浏览器从 HII 数据库读 IFR opcode 字节流，解析成一棵树，每个 question 记录 ID、文字、对应 varstore（GUID+偏移+宽度）和当前值</text>
+
+  <!-- Tree root: formset -->
+  <rect x="400" y="100" width="440" height="110" rx="12" fill="#eef2f7" stroke="#2f6f8f" stroke-width="2.4"/>
+  <text x="620" y="128" text-anchor="middle" font-size="18" font-weight="700" fill="#1f4e6b">formset（FORM_SET）</text>
+  <text x="620" y="152" text-anchor="middle" font-size="12" fill="#33475b">guid = JY_TIAN_SETUP_FORMSET_GUID</text>
+  <text x="620" y="172" text-anchor="middle" font-size="12" fill="#33475b">title / help = STRING_TOKEN(...)</text>
+  <text x="620" y="192" text-anchor="middle" font-size="12" fill="#33475b">classguid=SETUP_UTILITY... · class=0x0001 · subclass=0</text>
+
+  <!-- arrows from formset to two children -->
+  <g stroke="#2f6f8f" stroke-width="2" fill="none">
+    <path d="M470 210 L470 260 L300 260 L300 288" marker-end="url(#t1)"/>
+    <path d="M620 210 L620 288" marker-end="url(#t1)"/>
+  </g>
+
+  <!-- efivarstore box -->
+  <rect x="110" y="300" width="380" height="130" rx="12" fill="#f4f1ea" stroke="#7a4a12" stroke-width="2"/>
+  <text x="300" y="328" text-anchor="middle" font-size="16" font-weight="700" fill="#7a4a12">efivarstore</text>
+  <text x="300" y="352" text-anchor="middle" font-size="12" fill="#33475b">JY_TIAN_SETUP_CONFIGURATION（类型=结构体）</text>
+  <text x="300" y="372" text-anchor="middle" font-size="12" fill="#33475b">attribute = 0x00000007</text>
+  <text x="300" y="392" text-anchor="middle" font-size="12" fill="#33475b">name = JYTianSetupVar</text>
+  <text x="300" y="412" text-anchor="middle" font-size="12" fill="#33475b">guid = JY_TIAN_SETUP_VARSTORE_GUID</text>
+
+  <!-- form box -->
+  <rect x="520" y="300" width="320" height="70" rx="12" fill="#eaf3ec" stroke="#3b8269" stroke-width="2"/>
+  <text x="680" y="330" text-anchor="middle" font-size="17" font-weight="700" fill="#1f4e3a">form formid=0x0001</text>
+  <text x="680" y="354" text-anchor="middle" font-size="12" fill="#33475b">title = STRING_TOKEN(STR_JY_TIAN_FORM_TITLE)</text>
+
+  <!-- arrows from form to checkbox/oneof -->
+  <g stroke="#3b8269" stroke-width="2" fill="none">
+    <path d="M560 370 L560 410 L360 410 L360 440" marker-end="url(#t1)"/>
+    <path d="M820 370 L820 410 L800 410 L800 440" marker-end="url(#t1)"/>
+  </g>
+
+  <!-- checkbox -->
+  <rect x="150" y="452" width="420" height="92" rx="12" fill="#ffffff" stroke="#3b8269" stroke-width="2"/>
+  <text x="360" y="482" text-anchor="middle" font-size="16" font-weight="700" fill="#1f4e3a">checkbox varid = JYTianSetupVar.EnableFlag</text>
+  <text x="360" y="506" text-anchor="middle" font-size="12" fill="#33475b">questionid = JY_TIAN_ENABLE_QUESTION_ID (0x0001)</text>
+  <text x="360" y="526" text-anchor="middle" font-size="12" fill="#33475b">prompt/help = STRING_TOKEN(...) · flags = RESET_REQUIRED</text>
+
+  <!-- oneof -->
+  <rect x="620" y="452" width="420" height="92" rx="12" fill="#ffffff" stroke="#3b8269" stroke-width="2"/>
+  <text x="830" y="482" text-anchor="middle" font-size="16" font-weight="700" fill="#1f4e3a">oneof varid = JYTianSetupVar.DemoMode</text>
+  <text x="830" y="506" text-anchor="middle" font-size="12" fill="#33475b">questionid = JY_TIAN_MODE_QUESTION_ID (0x0002)</text>
+  <text x="830" y="526" text-anchor="middle" font-size="12" fill="#33475b">两个 option（下拉/单选）</text>
+
+  <!-- option A/B -->
+  <g stroke="#3b8269" stroke-width="2" fill="none">
+    <path d="M780 544 L780 590 L700 590 L700 612" marker-end="url(#t1)"/>
+    <path d="M780 544 L780 590 L860 590 L860 612" marker-end="url(#t1)"/>
+  </g>
+  <rect x="620" y="624" width="260" height="70" rx="10" fill="#fdf4e7" stroke="#b5652f" stroke-width="1.8"/>
+  <text x="750" y="654" text-anchor="middle" font-size="14" font-weight="600" fill="#7a4a12">option text=Mode A, value=0</text>
+  <text x="750" y="678" text-anchor="middle" font-size="12" fill="#33475b">flags = DEFAULT | RESET_REQUIRED</text>
+  <rect x="900" y="624" width="260" height="70" rx="10" fill="#ffffff" stroke="#b5652f" stroke-width="1.8"/>
+  <text x="1030" y="654" text-anchor="middle" font-size="14" font-weight="600" fill="#7a4a12">option text=Mode B, value=1</text>
+  <text x="1030" y="678" text-anchor="middle" font-size="12" fill="#33475b">flags = RESET_REQUIRED</text>
+
+  <!-- Right/secondary: struct & NVRAM binding -->
+  <rect x="120" y="740" width="470" height="150" rx="12" fill="#eaf1f7" stroke="#4a8fbd" stroke-width="2"/>
+  <text x="355" y="770" text-anchor="middle" font-size="16" font-weight="700" fill="#1f4e6b">三者严格对应（2 字节）</text>
+  <text x="355" y="796" text-anchor="middle" font-size="13" fill="#33475b">NVRAM 变量 = IFR varstore = struct 字节布局</text>
+  <text x="355" y="820" text-anchor="middle" font-size="13" fill="#33475b">EnableFlag → 偏移 0（1 字节）</text>
+  <text x="355" y="844" text-anchor="middle" font-size="13" fill="#33475b">DemoMode → 偏移 1（1 字节）</text>
+  <text x="355" y="868" text-anchor="middle" font-size="12" fill="#5b6b7b">#pragma pack(1) 强制紧缩，保证字节数=2</text>
+
+  <rect x="620" y="740" width="520" height="150" rx="12" fill="#f4f1ea" stroke="#7a4a12" stroke-width="2"/>
+  <text x="880" y="770" text-anchor="middle" font-size="16" font-weight="700" fill="#7a4a12">varid 直接引用结构体成员</text>
+  <text x="880" y="796" text-anchor="middle" font-size="13" fill="#33475b">“把这个控件连到变量的哪一块”</text>
+  <text x="880" y="820" text-anchor="middle" font-size="13" fill="#33475b">varstore 声明页面数据类型↔真实 UEFI 变量</text>
+  <text x="880" y="844" text-anchor="middle" font-size="13" fill="#33475b">attribute=7 = 非易失|开机读写|运行期读写</text>
+  <text x="880" y="868" text-anchor="middle" font-size="12" fill="#5b6b7b">config 由 .c 与 .vfr 共同 include，GUID/ID 自动同步</text>
+
+  <text x="620" y="932" text-anchor="middle" font-size="13" fill="#8a94a0">classguid+class+subclass 决定页面被归到哪个菜单大类（见 图5），not 这里是 Main/Advanced 本身。</text>
+</svg>

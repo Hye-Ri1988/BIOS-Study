@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1000" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#5b6b7b"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#2f6f8f"/>
+    </marker>
+  </defs>
+  <rect width="1280" height="1000" fill="#f7f8fa"/>
+  <text x="640" y="40" text-anchor="middle" font-size="26" font-weight="700" fill="#1b2b3a">五文件编译流水线框图</text>
+  <text x="640" y="68" text-anchor="middle" font-size="14" fill="#5b6b7b">JYTianSetup —— 从 5 个源文件到 HII 数据库 + 可执行驱动</text>
+
+  <!-- Stage A labels -->
+  <rect x="40" y="100" width="1200" height="30" rx="6" fill="#e4ebf1"/>
+  <text x="640" y="120" text-anchor="middle" font-size="15" font-weight="600" fill="#33475b">① 输入 · 5 个源文件（同一模块，被 .inf 汇总）</text>
+
+  <!-- 5 files -->
+  <g>
+    <rect x="60" y="150" width="220" height="92" rx="10" fill="#ffffff" stroke="#4a8fbd" stroke-width="2"/>
+    <text x="170" y="180" text-anchor="middle" font-size="16" font-weight="700" fill="#1f4e6b">JYTianSetupConfig.h</text>
+    <text x="170" y="204" text-anchor="middle" font-size="12" fill="#5b6b7b">共享头文件</text>
+    <text x="170" y="224" text-anchor="middle" font-size="12" fill="#5b6b7b">定类型 / 各 ID / 两个 GUID</text>
+
+    <rect x="300" y="150" width="220" height="92" rx="10" fill="#ffffff" stroke="#4a8fbd" stroke-width="2"/>
+    <text x="410" y="180" text-anchor="middle" font-size="16" font-weight="700" fill="#1f4e6b">JYTianSetup.uni</text>
+    <text x="410" y="204" text-anchor="middle" font-size="12" fill="#5b6b7b">字符串包</text>
+    <text x="410" y="224" text-anchor="middle" font-size="12" fill="#5b6b7b">所有文字（标题/提示/选项）</text>
+
+    <rect x="540" y="150" width="220" height="92" rx="10" fill="#ffffff" stroke="#4a8fbd" stroke-width="2"/>
+    <text x="650" y="180" text-anchor="middle" font-size="16" font-weight="700" fill="#1f4e6b">JYTianSetup.vfr</text>
+    <text x="650" y="204" text-anchor="middle" font-size="12" fill="#5b6b7b">表单定义</text>
+    <text x="650" y="224" text-anchor="middle" font-size="12" fill="#5b6b7b">formset/varstore/form/question</text>
+
+    <rect x="780" y="150" width="220" height="92" rx="10" fill="#ffffff" stroke="#4a8fbd" stroke-width="2"/>
+    <text x="890" y="180" text-anchor="middle" font-size="16" font-weight="700" fill="#1f4e6b">JYTianSetup.inf</text>
+    <text x="890" y="204" text-anchor="middle" font-size="12" fill="#5b6b7b">模块定义</text>
+    <text x="890" y="224" text-anchor="middle" font-size="12" fill="#5b6b7b">哪个模块 / 依赖什么</text>
+
+    <rect x="1020" y="150" width="220" height="92" rx="10" fill="#ffffff" stroke="#d9862f" stroke-width="2"/>
+    <text x="1130" y="180" text-anchor="middle" font-size="16" font-weight="700" fill="#7a4a12">JYTianSetup.c</text>
+    <text x="1130" y="204" text-anchor="middle" font-size="12" fill="#5b6b7b">驱动源码</text>
+    <text x="1130" y="224" text-anchor="middle" font-size="12" fill="#5b6b7b">读/写变量 · 注册页面</text>
+  </g>
+
+  <!-- arrows to build -->
+  <g stroke="#5b6b7b" stroke-width="2" fill="none">
+    <line x1="170" y1="246" x2="410" y2="330" marker-end="url(#arrow)"/>
+    <line x1="410" y1="246" x2="550" y2="330" marker-end="url(#arrow)"/>
+    <line x1="650" y1="246" x2="690" y2="330" marker-end="url(#arrow)"/>
+    <line x1="890" y1="246" x2="830" y2="330" marker-end="url(#arrow)"/>
+    <line x1="1130" y1="246" x2="1010" y2="330" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- Stage B compile -->
+  <rect x="40" y="340" width="1200" height="40" rx="8" fill="#eaf1f7" stroke="#4a8fbd" stroke-width="2"/>
+  <text x="640" y="366" text-anchor="middle" font-size="16" font-weight="700" fill="#1f4e6b">② 编译 · EDK2 / UEFI Build（VFR·UNI 编译器 + 链接）</text>
+
+  <g stroke="#5b6b7b" stroke-width="2" fill="none">
+    <line x1="410" y1="382" x2="410" y2="430" marker-end="url(#arrow)"/>
+    <line x1="650" y1="382" x2="650" y2="430" marker-end="url(#arrow)"/>
+    <line x1="1010" y1="382" x2="1010" y2="430" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- Stage C artifacts -->
+  <rect x="40" y="442" width="1200" height="30" rx="6" fill="#e4ebf1"/>
+  <text x="640" y="462" text-anchor="middle" font-size="15" font-weight="600" fill="#33475b">③ 编译产物</text>
+
+  <g>
+    <rect x="120" y="490" width="300" height="110" rx="10" fill="#ffffff" stroke="#4a8fbd" stroke-width="2"/>
+    <text x="270" y="520" text-anchor="middle" font-size="16" font-weight="700" fill="#1f4e6b">JYTianSetupStrings[]</text>
+    <text x="270" y="544" text-anchor="middle" font-size="12" fill="#5b6b7b">由 .uni 编译</text>
+    <text x="270" y="564" text-anchor="middle" font-size="12" fill="#5b6b7b">字符串包（文字）</text>
+    <text x="270" y="584" text-anchor="middle" font-size="12" fill="#5b6b7b">供 STRING_TOKEN 翻译</text>
+
+    <rect x="460" y="490" width="300" height="110" rx="10" fill="#ffffff" stroke="#4a8fbd" stroke-width="2"/>
+    <text x="610" y="520" text-anchor="middle" font-size="16" font-weight="700" fill="#1f4e6b">JYTianSetupFormBin[]</text>
+    <text x="610" y="544" text-anchor="middle" font-size="12" fill="#5b6b7b">由 .vfr 编译</text>
+    <text x="610" y="564" text-anchor="middle" font-size="12" fill="#5b6b7b">IFR 表单包（结构）</text>
+    <text x="610" y="584" text-anchor="middle" font-size="12" fill="#5b6b7b">决定页面长什么样</text>
+
+    <rect x="800" y="490" width="320" height="110" rx="10" fill="#fdf4e7" stroke="#d9862f" stroke-width="2"/>
+    <text x="960" y="520" text-anchor="middle" font-size="16" font-weight="700" fill="#7a4a12">JYTianSetup.efi</text>
+    <text x="960" y="544" text-anchor="middle" font-size="12" fill="#5b6b7b">由 .c + .inf 链接</text>
+    <text x="960" y="564" text-anchor="middle" font-size="12" fill="#5b6b7b">DXE 驱动（可执行·装载后运行）</text>
+    <text x="960" y="584" text-anchor="middle" font-size="12" fill="#5b6b7b">MODULE_TYPE = DXE_DRIVER</text>
+  </g>
+
+  <!-- Runtime stage -->
+  <rect x="40" y="640" width="1200" height="30" rx="6" fill="#e4ebf1"/>
+  <text x="640" y="660" text-anchor="middle" font-size="15" font-weight="600" fill="#33475b">④ 运行时注册（JYTianSetupEntryPoint · DXE 阶段）</text>
+
+  <g stroke="#5b6b7b" stroke-width="2" fill="none">
+    <line x1="270" y1="604" x2="270" y2="700" marker-end="url(#arrow)"/>
+    <line x1="610" y1="604" x2="610" y2="700" marker-end="url(#arrow)"/>
+    <line x1="960" y1="604" x2="960" y2="700" marker-end="url(#arrow)"/>
+  </g>
+
+  <g>
+    <rect x="180" y="712" width="380" height="92" rx="10" fill="#ffffff" stroke="#3b8269" stroke-width="2"/>
+    <text x="370" y="742" text-anchor="middle" font-size="15" font-weight="700" fill="#1f4e3a">InstallMultipleProtocolInterfaces</text>
+    <text x="370" y="766" text-anchor="middle" font-size="12" fill="#5b6b7b">装“逻辑”：设备路径 + ConfigAccess（回调）</text>
+    <text x="370" y="786" text-anchor="middle" font-size="12" fill="#5b6b7b">ExtractConfig / RouteConfig / Callback</text>
+
+    <rect x="600" y="712" width="380" height="92" rx="10" fill="#ffffff" stroke="#3b8269" stroke-width="2"/>
+    <text x="790" y="742" text-anchor="middle" font-size="15" font-weight="700" fill="#1f4e3a">HiiAddPackages</text>
+    <text x="790" y="766" text-anchor="middle" font-size="12" fill="#5b6b7b">装“外观”：Strings[] + FormBin[]</text>
+    <text x="790" y="786" text-anchor="middle" font-size="12" fill="#5b6b7b">发布进 HII 数据库（formset GUID）</text>
+  </g>
+
+  <!-- merge arrow -->
+  <g stroke="#5b6b7b" stroke-width="2" fill="none">
+    <line x1="560" y1="758" x2="640" y2="830" marker-end="url(#arrow)"/>
+    <line x1="790" y1="808" x2="790" y2="830" marker-end="url(#arrow)"/>
+  </g>
+
+  <rect x="560" y="842" width="460" height="70" rx="12" fill="#f0f4f8" stroke="#2f6f8f" stroke-width="2"/>
+  <text x="790" y="872" text-anchor="middle" font-size="16" font-weight="700" fill="#1f4e6b">HII 数据库</text>
+  <text x="790" y="894" text-anchor="middle" font-size="12" fill="#33475b">Form Browser 读取 IFR + 字符串包，渲染并交互</text>
+
+  <text x="980" y="895" text-anchor="middle" font-size="13" fill="#2f6f8f">→ 进入图2 运行架构</text>
+
+  <text x="40" y="970" font-size="12" fill="#8a94a0">注：.h 被 .c 与 .vfr 共同 include，因此“类型/GUID/ID”编译期天然同步；.c 与 .vfr 之间没有编译器兜底，改一边必须改另一边。</text>
+</svg>

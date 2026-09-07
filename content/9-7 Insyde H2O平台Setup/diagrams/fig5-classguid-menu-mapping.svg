@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 940" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <marker id="c1" markerWidth="11" markerHeight="11" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#4a8fbd"/>
+    </marker>
+    <marker id="c2" markerWidth="11" markerHeight="11" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 Z" fill="#3b8269"/>
+    </marker>
+  </defs>
+  <rect width="1240" height="940" fill="#f7f8fa"/>
+  <text x="620" y="40" text-anchor="middle" font-size="26" font-weight="700" fill="#1b2b3a">classguid / class / subclass → Main/Advanced 归类机制</text>
+  <text x="620" y="68" text-anchor="middle" font-size="14" fill="#5b6b7b">它们不是 Main/Advanced 本身，而是决定页面被归到哪个菜单大类的“分类标签”</text>
+
+  <!-- Left: HII database formsets -->
+  <rect x="60" y="110" width="380" height="300" rx="14" fill="#eef2f7" stroke="#2f6f8f" stroke-width="2"/>
+  <text x="250" y="142" text-anchor="middle" font-size="17" font-weight="700" fill="#1f4e6b">HII 数据库中的多个 formset</text>
+
+  <rect x="90" y="160" width="320" height="60" rx="8" fill="#ffffff" stroke="#c3cdd6"/>
+  <text x="250" y="188" text-anchor="middle" font-size="12" fill="#5b6b7b">formset A（tag = SC page）</text>
+  <text x="250" y="206" text-anchor="middle" font-size="11" fill="#8a94a0">classguid=SETUP_UTILITY_...</text>
+
+  <!-- our formset -->
+  <rect x="90" y="236" width="320" height="110" rx="10" fill="#eaf3ec" stroke="#3b8269" stroke-width="2.4"/>
+  <text x="250" y="264" text-anchor="middle" font-size="15" font-weight="700" fill="#1f4e3a">★ 我们的 JYTian formset</text>
+  <text x="250" y="288" text-anchor="middle" font-size="12" fill="#33475b">申报类别：SC page</text>
+  <text x="250" y="308" text-anchor="middle" font-size="12" fill="#33475b">classguid={0x9f85453e-...}</text>
+  <text x="250" y="328" text-anchor="middle" font-size="12" fill="#33475b">class=0x0001 · subclass=0</text>
+
+  <rect x="90" y="362" width="320" height="36" rx="8" fill="#ffffff" stroke="#c3cdd6"/>
+  <text x="250" y="385" text-anchor="middle" font-size="12" fill="#5b6b7b">formset C（tag = DV page）...</text>
+
+  <!-- middle: setup frontend mapping -->
+  <rect x="480" y="110" width="420" height="300" rx="14" fill="#eaf3ec" stroke="#3b8269" stroke-width="2"/>
+  <text x="690" y="142" text-anchor="middle" font-size="17" font-weight="700" fill="#1f4e3a">H2O Setup 前端（Form Browser）</text>
+  <text x="690" y="166" text-anchor="middle" font-size="12" fill="#33475b">扫描所有 formset 的标签 → 映射表 → 归位</text>
+
+  <rect x="500" y="184" width="380" height="40" rx="6" fill="#ffffff" stroke="#4a8fbd"/>
+  <text x="690" y="209" text-anchor="middle" font-size="12" fill="#1f4e6b">“标签 → 菜单位置” 映射表</text>
+
+  <rect x="500" y="238" width="180" height="44" rx="6" fill="#ffffff" stroke="#c3cdd6"/>
+  <text x="590" y="256" text-anchor="middle" font-size="11" fill="#33475b">SC page</text>
+  <text x="590" y="272" text-anchor="middle" font-size="11" fill="#33475b">→ 普通 Setup 页</text>
+  <rect x="700" y="238" width="180" height="44" rx="6" fill="#ffffff" stroke="#c3cdd6"/>
+  <text x="790" y="256" text-anchor="middle" font-size="11" fill="#33475b">DV page</text>
+  <text x="790" y="272" text-anchor="middle" font-size="11" fill="#33475b">→ Device 页</text>
+  <rect x="500" y="292" width="180" height="44" rx="6" fill="#ffffff" stroke="#c3cdd6"/>
+  <text x="590" y="310" text-anchor="middle" font-size="11" fill="#33475b">SC page</text>
+  <text x="590" y="326" text-anchor="middle" font-size="11" fill="#33475b">→ Main / Advanced</text>
+  <rect x="700" y="292" width="180" height="44" rx="6" fill="#ffffff" stroke="#c3cdd6"/>
+  <text x="790" y="310" text-anchor="middle" font-size="11" fill="#33475b">...（平台源码决定）</text>
+  <text x="790" y="326" text-anchor="middle" font-size="11" fill="#8a94a0"></text>
+
+  <text x="690" y="368" text-anchor="middle" font-size="12" fill="#5b6b7b">落 Main 还是 Advanced，取决于平台源码映射表</text>
+  <text x="690" y="388" text-anchor="middle" font-size="12" fill="#8a94a0">.vfr 只负责“申报类别”，给不出具体 Tab</text>
+
+  <!-- right: result rooms -->
+  <rect x="940" y="110" width="250" height="300" rx="14" fill="#fdf4e7" stroke="#b5652f" stroke-width="2"/>
+  <text x="1065" y="142" text-anchor="middle" font-size="16" font-weight="700" fill="#7a4a12">菜单大类（房间）</text>
+
+  <rect x="960" y="170" width="210" height="70" rx="8" fill="#ffffff" stroke="#b5652f"/>
+  <text x="1065" y="200" text-anchor="middle" font-size="15" font-weight="700" fill="#7a4a12">Main</text>
+  <text x="1065" y="222" text-anchor="middle" font-size="11" fill="#5b6b7b">按“类型→房间”排班表入座</text>
+
+  <rect x="960" y="260" width="210" height="70" rx="8" fill="#ffffff" stroke="#b5652f"/>
+  <text x="1065" y="290" text-anchor="middle" font-size="15" font-weight="700" fill="#7a4a12">Advanced</text>
+  <text x="1065" y="312" text-anchor="middle" font-size="11" fill="#5b6b7b">按“类型→房间”排班表入座</text>
+
+  <!-- arrows: formsets -> frontend -> rooms -->
+  <g stroke="#4a8fbd" stroke-width="2.2" fill="none">
+    <path d="M440 250 L480 250" marker-end="url(#c1)"/>
+    <path d="M900 250 L940 250" marker-end="url(#c2)"/>
+  </g>
+  <text x="462" y="240" font-size="12" fill="#4a8fbd">申报类别</text>
+  <text x="912" y="240" font-size="12" fill="#3b8269">按标签归位</text>
+
+  <!-- analogy callout -->
+  <rect x="180" y="480" width="880" height="180" rx="16" fill="#f0f4f8" stroke="#2f6f8f" stroke-width="2"/>
+  <text x="620" y="512" text-anchor="middle" font-size="18" font-weight="700" fill="#1f4e6b">类比：会议室 + 会议类型回执</text>
+  <text x="620" y="542" text-anchor="middle" font-size="14" fill="#33475b">菜单大类（Main/Advanced） = 会议室</text>
+  <text x="620" y="566" text-anchor="middle" font-size="14" fill="#33475b">class / classguid / subclass = 你填的“会议类型回执”</text>
+  <text x="620" y="590" text-anchor="middle" font-size="14" fill="#33475b">前台（Setup 前端）= 按“类型→房间”排班表把你安排进对应房间</text>
+  <text x="620" y="614" text-anchor="middle" font-size="14" font-weight="600" fill="#7a4a12">回执决定进哪个房间，但它不是房间。</text>
+
+  <text x="620" y="700" text-anchor="middle" font-size="13" fill="#5b6b7b">因此：想控制页面落在 Main 还是 Advanced，要去改平台源码的“标签→菜单位置”映射，而不是改 .vfr 里的 classguid/class。</text>
+  <text x="620" y="730" text-anchor="middle" font-size="12" fill="#8a94a0">Insyde：SETUP_UTILITY_FORMSET_CLASS_GUID 来自 InsydeModulePkg Include/Guid/H2OSetup.h。</text>
+</svg>
